@@ -1,5 +1,6 @@
 package com.apintermedio.incidentes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,16 +9,18 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-
+@Data
+@ToString
 public class Servicios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idServicio;
+    @Column(name="id")
+    private Long servicioId;
     private String nombreServicio;
     @ManyToMany(mappedBy = "listaServicios")
+    @JsonIgnoreProperties("listaServicios")
     private List<Cliente>clientes;
+
 
 
 }

@@ -8,13 +8,14 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-
+@Data
+@ToString
+@Table(name="cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCliente;
+    @Column(name="id")
+    private Long clienteId;
     private String razonSocial;
     private Long cuit;
     private String domicilio;
@@ -24,6 +25,8 @@ public class Cliente {
     joinColumns = @JoinColumn(name ="id_cliente"),
     inverseJoinColumns = @JoinColumn(name="id_servicio"))
     private List<Servicios> listaServicios;
+    @OneToMany(mappedBy = "cliente")
+    private List<Incidente>listIncidentes;
 
 
 

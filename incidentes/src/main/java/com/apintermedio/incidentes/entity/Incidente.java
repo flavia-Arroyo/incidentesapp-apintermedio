@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -17,11 +18,20 @@ import java.util.List;
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long incidenteId;
-    private String descripcion;
-    private LocalDate fechaNotificacion;
+    private String descripcionProblema;
+    private LocalDate fechaIncidente;
     private Boolean estado;
-    @OneToMany
+    private LocalTime horaIncidente;
+    @ManyToOne
+    @JoinColumn(name="fk_cliente", referencedColumnName = "id")
+    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name="fk_tecnico", referencedColumnName = "id")
+    private Tecnico tecnico;
+
+    @OneToMany(mappedBy = "incidente")
     private List<TipoProblema> tipoProblema;
 
 

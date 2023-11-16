@@ -16,9 +16,11 @@ import java.util.List;
 public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long tecnicoId;
     private String nombreCompleto;
-    @OneToMany
+    private String email;
+    @OneToMany(mappedBy = "tecnico")
     private List<Incidente> listIncidente;
     @ManyToMany
     @JoinTable(name = "tecnico_especialidad",
