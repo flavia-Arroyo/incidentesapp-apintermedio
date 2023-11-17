@@ -44,8 +44,8 @@ En particular, en esta entrega se solicita:
 Es necesario que el proyecto Java sea creado como un proyecto “Maven” para poder añadir algunas dependencias. Se recomienda la utilización de la dependencia de Lombok para facilitar la tarea repetitiva de generación de Setters y Getters de las clases.
 </p>
 
-<h4>Diagrama Entidad Relacion</h4>
-![This is an editable grande](https://ibb.co/2hsr47h)https://ibb.co/2hsr47h)
+**<h2 align="center" >Diagrama Entidad Relacion</h2>**
+<img src="./trabajo_practico_DER_page-0001.jpg">
 
 
 
