@@ -45,8 +45,7 @@ Es necesario que el proyecto Java sea creado como un proyecto “Maven” para p
 </p>
 
 <h4>Diagrama Entidad Relacion</h4>
-- 📁:__Tareas__:
-+[Tarea][trabajo_practico_DER.pdf]
+![This is an editable grande](https://ibb.co/2hsr47h)https://ibb.co/2hsr47h)
 
 
 
