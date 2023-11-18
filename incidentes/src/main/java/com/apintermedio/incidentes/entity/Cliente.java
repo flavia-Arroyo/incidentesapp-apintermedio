@@ -29,5 +29,12 @@ public class Cliente {
     private List<Incidente>listIncidentes;
 
 
+    public List<Servicios> asignarServicios(Servicios serv){
+        this.listaServicios.add(serv);
+        return listaServicios;
+
+    }
+
+
 
 }

@@ -1,6 +1,8 @@
 package com.apintermedio.incidentes.service;
 
+import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Tecnico;
+import com.apintermedio.incidentes.repository.IEspecialidadTecRepository;
 import com.apintermedio.incidentes.repository.ITecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.List;
 public class TecnicoService implements ITecnicoService{
     @Autowired
     ITecnicoRepository tecnicoRepo;
+    @Autowired
+    IEspecialidadTecRepository espeRepo;
     @Override
     public List<Tecnico> listarTecnicos() {
         return tecnicoRepo.findAll ();
@@ -30,5 +34,19 @@ public class TecnicoService implements ITecnicoService{
     public void eliminarTecnicoporID(Long idTecnico) {
         tecnicoRepo.deleteById ( idTecnico );
 
+    }
+
+    @Override
+    public Tecnico asignarEspecialidad(Long idTecnico, Long idEspecialidad) {
+        Tecnico tecnico= this.buscarTecnicoporId ( idTecnico );
+        EspecialidadTecnico espe = espeRepo.findById ( idEspecialidad ).orElse ( null );
+       tecnico.asignarEpecialidad ( espe );
+       espe.asignarTecnico ( tecnico );
+       this.guardarTecnico ( tecnico );
+
+
+
+
+        return tecnico;
     }
 }

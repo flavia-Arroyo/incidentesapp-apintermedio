@@ -22,4 +22,11 @@ public class TecnicoController {
         tecnicoServ.guardarTecnico ( tecnico );
         return "El tecnico fue creado correctamente";
     }
+    @PutMapping("/tecnico/{idTecnico}/{idEspe}")
+    public Tecnico asignarEspecialidad(@PathVariable long idTecnico,
+                                       @PathVariable long idEspe){
+        Tecnico tecnico = tecnicoServ.asignarEspecialidad ( idTecnico, idEspe );
+        return tecnico;
+
+    }
 }

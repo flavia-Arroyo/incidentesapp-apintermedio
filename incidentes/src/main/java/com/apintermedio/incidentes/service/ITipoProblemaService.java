@@ -10,4 +10,7 @@ public interface ITipoProblemaService {
     public TipoProblema buscarProblemaporId(Long idProblema);
     public void guardarProblema(TipoProblema tipoProblema);
     public void eliminarProblemaporID(Long idProblema);
+    public TipoProblema asignarEspecialidad(Long idProblema, Long idEspe);
+    public String eliminarEspecialidad(Long idProblema, Long idEspe);
+    public TipoProblema asignarHoraMaxima(Long idProblema);
 }

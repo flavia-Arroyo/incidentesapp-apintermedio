@@ -11,9 +11,10 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Data
 @ToString
+@Table(name="especialidad")
 public class EspecialidadTecnico {
 
     @Id
@@ -28,6 +29,10 @@ public class EspecialidadTecnico {
     @JsonIgnoreProperties("listaEspecialidades")
     private List<TipoProblema>tipoProblema;
 
-
-
+    public EspecialidadTecnico(String nombreEspecialidad) {
+        this.nombreEspecialidad = nombreEspecialidad;
+    }
+    public void asignarTecnico(Tecnico tecnico){
+        this.listaTecnicos.add(tecnico);
+    }
 }

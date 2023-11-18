@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Data
 @ToString
 public class Tecnico {
@@ -28,7 +28,17 @@ public class Tecnico {
             inverseJoinColumns = @JoinColumn(name="especialidadId"))
     private List<EspecialidadTecnico> listaEspecialidades;
 
+    public Tecnico(String nombreCompleto, String email) {
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+    }
 
+    public List<Incidente> asignarIncidente(Incidente incidente) {
+        this.listIncidente.add(incidente);
+        return listIncidente;
+    }
+    public void asignarEpecialidad(EspecialidadTecnico espe){
+        this.listaEspecialidades.add(espe);
 
-
+    }
 }

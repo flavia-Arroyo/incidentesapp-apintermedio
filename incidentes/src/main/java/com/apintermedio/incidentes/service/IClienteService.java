@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.service;
 
 import com.apintermedio.incidentes.entity.Cliente;
+import com.apintermedio.incidentes.entity.Servicios;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public interface IClienteService {
     public Cliente buscarClienteporId(Long idCliente);
     public void guardarCliente(Cliente cliente);
     public void eliminarClienteporID(Long idCliente);
+    public Cliente  asignarServicios(Long idCliente, Long idServicio);
 
 
 
