@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
+//@ToString
 public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

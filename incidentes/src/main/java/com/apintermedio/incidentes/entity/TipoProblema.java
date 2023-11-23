@@ -13,9 +13,9 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-
+@AllArgsConstructor
 @Data
-@ToString
+//@ToString
 public class TipoProblema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,15 +34,9 @@ public class TipoProblema {
     @JoinColumn(name="fk_incidente", referencedColumnName = "id")
     private Incidente incidente;
 
-    public TipoProblema(String descripcionProblema, Complegidad complegidad) {
-        this.descripcionProblema = descripcionProblema;
-        this.complegidad = complegidad;
 
-    }
 
-    public void asignarEspecialidad (EspecialidadTecnico espe){
-        this.listaEspecialidades.add(espe);
-    }
+
     public void borrarEspecialidad (EspecialidadTecnico espe){
         this.listaEspecialidades.remove ( espe );
     }

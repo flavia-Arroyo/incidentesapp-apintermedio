@@ -1,5 +1,7 @@
 package com.apintermedio.incidentes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
+//@ToString
 @Table(name="cliente")
 public class Cliente {
     @Id
@@ -26,6 +28,7 @@ public class Cliente {
     inverseJoinColumns = @JoinColumn(name="id_servicio"))
     private List<Servicios> listaServicios;
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Incidente>listIncidentes;
 
 

@@ -26,8 +26,10 @@ public class TipoProblemaService implements ITipoProblemaService{
     }
 
     @Override
-    public void guardarProblema(TipoProblema tipoProblema) {
+    public String guardarProblema(TipoProblema tipoProblema) {
+        tipoProblema.asignarHoraMaxima ( tipoProblema);
         problemaRepo.save ( tipoProblema );
+        return "se creo el problema correctamente";
 
     }
 
@@ -37,18 +39,7 @@ public class TipoProblemaService implements ITipoProblemaService{
 
     }
 
-    @Override
-    public TipoProblema asignarEspecialidad(Long idProblema, Long idEspe) {
-        TipoProblema prob = problemaRepo.findById ( idProblema ).orElse ( null );
-       EspecialidadTecnico espe = espeRepo.findById ( idEspe ).orElse ( null );
-       prob.asignarEspecialidad ( espe );
 
-        problemaRepo.save ( prob);
-        return prob;
-
-
-
-    }
 
     @Override
     public String eliminarEspecialidad(Long idProblema, Long idEspe) {
@@ -60,11 +51,5 @@ public class TipoProblemaService implements ITipoProblemaService{
         return "se elimino la especialidad correctamente";
     }
 
-    @Override
-    public TipoProblema asignarHoraMaxima(Long idProblema) {
-        TipoProblema problema = this.buscarProblemaporId ( idProblema );
-        problema.asignarHoraMaxima ( problema );
-        this.guardarProblema ( problema );
-        return problema;
-    }
+
 }

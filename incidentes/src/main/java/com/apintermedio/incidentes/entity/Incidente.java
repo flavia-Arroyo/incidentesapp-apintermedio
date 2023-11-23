@@ -1,6 +1,8 @@
 package com.apintermedio.incidentes.entity;
 
 import com.apintermedio.incidentes.enumerados.Estados;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Data
-@ToString
+//@ToString
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +29,8 @@ public class Incidente {
     private Estados estado;
     private LocalTime horaIncidente;
     private LocalTime horaEstimadaTecnico;
+    private LocalDateTime fechaHoraTerminara;
+
     @ManyToOne
     @JoinColumn(name="fk_cliente", referencedColumnName = "id")
     private Cliente cliente;
@@ -35,14 +39,17 @@ public class Incidente {
     private Tecnico tecnico;
 
     @OneToMany(mappedBy = "incidente")
+    @JsonIgnore
     private List<TipoProblema> tipoProblema;
 
-    public Incidente(String descripcionProblema, LocalDate fechaIncidente, LocalTime horaIncidente, Cliente cliente) {
+    public Incidente(String descripcionProblema, Cliente cliente) {
         this.descripcionProblema = descripcionProblema;
-        this.fechaIncidente = fechaIncidente;
-        this.horaIncidente = horaIncidente;
+
         this.cliente = cliente;
         this.estado = Estados.ABIERTO;
+    }
+    public void determinarFecha (){
+        this.fechaIncidente = LocalDate.now ();
     }
 
 

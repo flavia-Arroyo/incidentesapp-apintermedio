@@ -1,5 +1,7 @@
 package com.apintermedio.incidentes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Data
-@ToString
+//@ToString
 public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,7 @@ public class Tecnico {
     private String nombreCompleto;
     private String email;
     @OneToMany(mappedBy = "tecnico")
+    @JsonIgnore
     private List<Incidente> listIncidente;
     @ManyToMany
     @JoinTable(name = "tecnico_especialidad",

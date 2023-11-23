@@ -16,17 +16,15 @@ import java.util.List;
 public class TipoProblemaController {
     @Autowired
     TipoProblemaService problemaService;
-    private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
-    @PutMapping("/problema/{idProblema}/{idEspe}")
-    public TipoProblema asignarEspecialidad(@PathVariable long idProblema,
-                                            @PathVariable long idEspe){
-        TipoProblema tipoProb =problemaService.asignarEspecialidad ( idProblema, idEspe );
-        return tipoProb;
+    //private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+    @PostMapping("/problemas")
+    public String crearProblema (@RequestBody TipoProblema problema){
+        return problemaService.guardarProblema ( problema );
     }
     @GetMapping("/problemas")
     public List<TipoProblema>  traerProblemas(){
        List<TipoProblema> listProblema =  problemaService.listarProblema ();
-        listProblema.forEach ( problema-> logger.info(problema.toString ()) );
+        //listProblema.forEach ( problema-> logger.info(problema.toString ()) );
         return listProblema;
     }
 
@@ -36,11 +34,7 @@ public class TipoProblemaController {
         return problemaService.eliminarEspecialidad ( idProblema, idEspe);
 
     }
-    @PutMapping("/asignarHoraMaxima/{idProblema}")
-    public TipoProblema asignarMaximoHoras (@PathVariable long idProblema){
-        return problemaService.asignarHoraMaxima ( idProblema );
 
-    }
 
 
 }

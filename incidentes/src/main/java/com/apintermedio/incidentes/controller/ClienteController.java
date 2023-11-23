@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("incidentes-app")
 @CrossOrigin(value= "http://localhost:4200")
 public class ClienteController {
-    private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+    //private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
 
     @Autowired
     private ClienteService cliServ;
@@ -22,8 +22,7 @@ public class ClienteController {
     @GetMapping("/clientes")
     public List<Cliente> obtenerClientes(){
         List<Cliente> clientes = cliServ.listarClientes ();
-        logger.info("Clientes obtenidos");
-        clientes.forEach ( cliente -> logger.info(cliente.toString ()) );
+
         return clientes;
     }
     @PostMapping("/crearCliente")
