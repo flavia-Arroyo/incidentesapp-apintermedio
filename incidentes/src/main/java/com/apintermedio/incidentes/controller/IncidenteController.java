@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.controller;
 
 import com.apintermedio.incidentes.entity.Incidente;
+import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.service.IncidenteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("incidentes-app")
-@CrossOrigin(value= "http://localhost:4200")
+
 public class IncidenteController {
-    private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+
     @Autowired
     IncidenteService incidenteService;
 
@@ -23,8 +24,8 @@ public class IncidenteController {
     }
 
     @PostMapping("/incidente")
-    public String crearIncidente(){
+    public String generarIncidente(@RequestBody Incidente incidente){
 
-        return "el incidente ha sido creado";
+        return incidenteService.guardarIncidente ( incidente );
     }
 }

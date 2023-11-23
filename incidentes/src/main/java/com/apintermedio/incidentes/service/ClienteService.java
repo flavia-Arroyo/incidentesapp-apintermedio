@@ -41,14 +41,5 @@ public class ClienteService implements IClienteService{
 
     }
 
-    @Override
-    public Cliente asignarServicios(Long idCliente, Long idServicio) {
-        Cliente cliente = this.buscarClienteporId ( idCliente );
-        Servicios serv = servRepo.findById ( idServicio ).orElse ( null );
-        cliente.asignarServicios ( serv );
-        this.guardarCliente ( cliente );
 
-
-        return cliente;
-    }
 }

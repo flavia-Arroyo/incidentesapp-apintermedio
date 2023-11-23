@@ -30,10 +30,7 @@ public class ClienteController {
         cliServ.guardarCliente (cli  );
         return "El cliente fue creado correctamente";
     }
-    @PutMapping("/asignarServicio/{idCliente}/{idServ}")
-    public Cliente asignarServicio(@PathVariable long idCliente, @PathVariable long idServ){
-        return cliServ.asignarServicios ( idCliente, idServ );
-    }
+
 
 
 

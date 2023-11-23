@@ -1,13 +1,13 @@
 package com.apintermedio.incidentes.controller;
 
 import com.apintermedio.incidentes.entity.Tecnico;
-import com.apintermedio.incidentes.responseDto.ResponseDto;
-import com.apintermedio.incidentes.service.IIncidenteService;
 import com.apintermedio.incidentes.service.ITecnicoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("incidentes-app")
@@ -22,11 +22,6 @@ public class TecnicoController {
         tecnicoServ.guardarTecnico ( tecnico );
         return "El tecnico fue creado correctamente";
     }
-    @PutMapping("/tecnico/{idTecnico}/{idEspe}")
-    public Tecnico asignarEspecialidad(@PathVariable long idTecnico,
-                                       @PathVariable long idEspe){
-        Tecnico tecnico = tecnicoServ.asignarEspecialidad ( idTecnico, idEspe );
-        return tecnico;
 
-    }
+
 }

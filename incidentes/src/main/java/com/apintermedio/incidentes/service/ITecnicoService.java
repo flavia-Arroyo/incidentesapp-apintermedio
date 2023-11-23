@@ -10,5 +10,7 @@ public interface ITecnicoService {
     public Tecnico buscarTecnicoporId(Long idTecnico);
     public void guardarTecnico(Tecnico tecnico);
     public void eliminarTecnicoporID(Long idTecnico);
-    public Tecnico asignarEspecialidad(Long idTecnico, Long idEspecialidad);
+
+
+
 }

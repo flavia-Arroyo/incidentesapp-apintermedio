@@ -7,6 +7,7 @@ import com.apintermedio.incidentes.repository.ITecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,17 +37,7 @@ public class TecnicoService implements ITecnicoService{
 
     }
 
-    @Override
-    public Tecnico asignarEspecialidad(Long idTecnico, Long idEspecialidad) {
-        Tecnico tecnico= this.buscarTecnicoporId ( idTecnico );
-        EspecialidadTecnico espe = espeRepo.findById ( idEspecialidad ).orElse ( null );
-       tecnico.asignarEpecialidad ( espe );
-       espe.asignarTecnico ( tecnico );
-       this.guardarTecnico ( tecnico );
 
 
 
-
-        return tecnico;
-    }
 }

@@ -16,6 +16,8 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+
 
 @Data
 //@ToString
@@ -42,14 +44,16 @@ public class Incidente {
     @JsonIgnore
     private List<TipoProblema> tipoProblema;
 
-    public Incidente(String descripcionProblema, Cliente cliente) {
-        this.descripcionProblema = descripcionProblema;
 
-        this.cliente = cliente;
-        this.estado = Estados.ABIERTO;
-    }
     public void determinarFecha (){
+
         this.fechaIncidente = LocalDate.now ();
+
+    }
+
+    public void horaIncidente() {
+        horaIncidente= LocalTime.now ();
+
     }
 
 

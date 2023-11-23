@@ -11,7 +11,7 @@ public interface IClienteService {
     public Cliente buscarClienteporId(Long idCliente);
     public void guardarCliente(Cliente cliente);
     public void eliminarClienteporID(Long idCliente);
-    public Cliente  asignarServicios(Long idCliente, Long idServicio);
+
 
 
 

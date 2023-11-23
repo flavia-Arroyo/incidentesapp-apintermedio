@@ -28,6 +28,9 @@ public class TipoProblemaController {
         return listProblema;
     }
 
+
+
+
     @DeleteMapping("/eliminarEspe/{idProblema}/{idEspe}")
     public String eliminarEspecialidad(@PathVariable long idProblema,
                                        @PathVariable long idEspe){
