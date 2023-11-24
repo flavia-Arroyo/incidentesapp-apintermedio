@@ -40,8 +40,11 @@ public class Incidente {
     @JoinColumn(name="fk_tecnico", referencedColumnName = "id")
     private Tecnico tecnico;
 
-    @OneToMany(mappedBy = "incidente")
-    @JsonIgnore
+
+    @ManyToMany
+    @JoinTable(name = "incidente_tipoProblema",
+            joinColumns = @JoinColumn(name ="id_incidente"),
+            inverseJoinColumns = @JoinColumn(name="id_tipoProblema"))
     private List<TipoProblema> tipoProblema;
 
 

@@ -26,6 +26,7 @@ public class IncidenteController {
     @PostMapping("/incidente")
     public String generarIncidente(@RequestBody Incidente incidente){
 
+
         return incidenteService.guardarIncidente ( incidente );
     }
 }

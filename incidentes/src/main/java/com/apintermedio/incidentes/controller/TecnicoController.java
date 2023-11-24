@@ -22,6 +22,10 @@ public class TecnicoController {
         tecnicoServ.guardarTecnico ( tecnico );
         return "El tecnico fue creado correctamente";
     }
+    @GetMapping("/tecnico")
+    public List<Tecnico> traerTecnicos(){
+        return tecnicoServ.listarTecnicos ();
+    }
 
 
 }

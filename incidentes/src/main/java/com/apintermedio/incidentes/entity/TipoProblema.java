@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.entity;
 
 import com.apintermedio.incidentes.enumerados.Complegidad;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +31,9 @@ public class TipoProblema {
             joinColumns = @JoinColumn(name ="id_problema"),
             inverseJoinColumns = @JoinColumn(name="id_especialidades"))
     private List<EspecialidadTecnico>listaEspecialidades;
-    @ManyToOne
-    @JoinColumn(name="fk_incidente", referencedColumnName = "id")
-    private Incidente incidente;
+    @ManyToMany(mappedBy = "tipoProblema")
+   @JsonIgnore
+    private List<Incidente> listIncidente;
 
 
 
