@@ -4,22 +4,20 @@ import com.apintermedio.incidentes.enumerados.Estados;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 
-
-@Data
+@Getter
+@Setter
 //@ToString
 public class Incidente {
     @Id
@@ -33,19 +31,17 @@ public class Incidente {
     private LocalTime horaEstimadaTecnico;
     private LocalDateTime fechaHoraTerminara;
 
-    @ManyToOne
-    @JoinColumn(name="fk_cliente", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="fk_cliente", nullable = false)
     private Cliente cliente;
-    @ManyToOne
-    @JoinColumn(name="fk_tecnico", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="fk_tecnico", nullable = false)
     private Tecnico tecnico;
-
-
     @ManyToMany
-    @JoinTable(name = "incidente_tipoProblema",
-            joinColumns = @JoinColumn(name ="id_incidente"),
-            inverseJoinColumns = @JoinColumn(name="id_tipoProblema"))
-    private List<TipoProblema> tipoProblema;
+    @JoinTable(name="incidente_problema",
+    joinColumns = @JoinColumn(name="incidente_id"),
+    inverseJoinColumns = @JoinColumn(name="problema_id"))
+    private Set<TipoProblema> tipoProblema;
 
 
     public void determinarFecha (){

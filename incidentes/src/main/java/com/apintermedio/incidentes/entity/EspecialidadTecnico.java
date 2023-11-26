@@ -3,17 +3,16 @@ package com.apintermedio.incidentes.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
 //@ToString
 @Table(name="especialidad")
 public class EspecialidadTecnico {
@@ -24,11 +23,11 @@ public class EspecialidadTecnico {
     private Long especialidadId;
     private String nombreEspecialidad;
     @ManyToMany(mappedBy = "listaEspecialidades")
-    @JsonIgnore
-    private List<Tecnico>listaTecnicos;
+
+    private Set<Tecnico> listaTecnicos;
     @ManyToMany(mappedBy = "listaEspecialidades")
-    @JsonIgnore
-    private List<TipoProblema>tipoProblema;
+
+    private Set<TipoProblema>tipoProblema;
 
     public EspecialidadTecnico(String nombreEspecialidad) {
         this.nombreEspecialidad = nombreEspecialidad;

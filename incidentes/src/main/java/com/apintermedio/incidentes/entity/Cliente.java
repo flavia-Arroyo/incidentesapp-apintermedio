@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -26,17 +27,13 @@ public class Cliente {
     @JoinTable(name = "clientes_servicios",
     joinColumns = @JoinColumn(name ="id_cliente"),
     inverseJoinColumns = @JoinColumn(name="id_servicio"))
-    private List<Servicios> listaServicios;
-    @OneToMany(mappedBy = "cliente")
-    @JsonIgnore
-    private List<Incidente>listIncidentes;
+    private Set<Servicios> listaServicios;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+
+    private Set<Incidente>listIncidentes;
 
 
-    public List<Servicios> asignarServicios(Servicios serv){
-        this.listaServicios.add(serv);
-        return listaServicios;
 
-    }
 
 
 

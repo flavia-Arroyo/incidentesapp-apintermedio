@@ -3,19 +3,18 @@ package com.apintermedio.incidentes.entity;
 import com.apintermedio.incidentes.enumerados.Complegidad;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 //@ToString
 public class TipoProblema {
     @Id
@@ -31,9 +30,9 @@ public class TipoProblema {
             joinColumns = @JoinColumn(name ="id_problema"),
             inverseJoinColumns = @JoinColumn(name="id_especialidades"))
     private List<EspecialidadTecnico>listaEspecialidades;
+
     @ManyToMany(mappedBy = "tipoProblema")
-   @JsonIgnore
-    private List<Incidente> listIncidente;
+    private Set<Incidente> listIncidente;
 
 
 
@@ -44,8 +43,6 @@ public class TipoProblema {
 
 
     public void asignarHoraMaxima(TipoProblema problema){
-
-
         switch (problema.getComplegidad ()){
             case ALTA -> setHorasMaximaResolucion(36);
             case MEDIA -> setHorasMaximaResolucion ( 24 );

@@ -6,11 +6,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 //@ToString
 public class Servicios {
     @Id
@@ -19,8 +21,8 @@ public class Servicios {
     private Long servicioId;
     private String nombreServicio;
     @ManyToMany(mappedBy = "listaServicios")
-    @JsonIgnore
-    private List<Cliente>clientes;
+
+    private Set<Cliente> clientes;
 
 
 

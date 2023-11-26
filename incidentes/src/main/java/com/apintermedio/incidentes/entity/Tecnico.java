@@ -3,17 +3,16 @@ package com.apintermedio.incidentes.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
 //@ToString
 public class Tecnico {
     @Id
@@ -22,26 +21,31 @@ public class Tecnico {
     private Long tecnicoId;
     private String nombreCompleto;
     private String email;
-    @OneToMany(mappedBy = "tecnico")
-    @JsonIgnore
-    private List<Incidente> listIncidente;
+    @OneToMany(mappedBy = "tecnico", cascade = CascadeType.ALL)
+    private Set<Incidente> listIncidente;
     @ManyToMany
     @JoinTable(name = "tecnico_especialidad",
             joinColumns = @JoinColumn(name = "idTecnico"),
             inverseJoinColumns = @JoinColumn(name="especialidadId"))
-    private List<EspecialidadTecnico> listaEspecialidades;
+    private Set<EspecialidadTecnico> listaEspecialidades;
 
     public Tecnico(String nombreCompleto, String email) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
     }
 
-    public List<Incidente> asignarIncidente(Incidente incidente) {
+    public Set<Incidente> asignarIncidente(Incidente incidente) {
         this.listIncidente.add(incidente);
+
         return listIncidente;
     }
+
+
+
     public void asignarEpecialidad(EspecialidadTecnico espe){
         this.listaEspecialidades.add(espe);
 
+
     }
+
 }

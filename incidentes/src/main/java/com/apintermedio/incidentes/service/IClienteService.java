@@ -2,14 +2,16 @@ package com.apintermedio.incidentes.service;
 
 import com.apintermedio.incidentes.entity.Cliente;
 import com.apintermedio.incidentes.entity.Servicios;
+import com.apintermedio.incidentes.requestDto.ClienteDto;
+import com.apintermedio.incidentes.responseDto.ResponseClienteDto;
 
 import java.util.List;
 
 public interface IClienteService {
 
-    public List<Cliente> listarClientes();
+    public List<ClienteDto> listarClientes();
     public Cliente buscarClienteporId(Long idCliente);
-    public void guardarCliente(Cliente cliente);
+    public ResponseClienteDto guardarCliente(ClienteDto cliente);
     public void eliminarClienteporID(Long idCliente);
 
 

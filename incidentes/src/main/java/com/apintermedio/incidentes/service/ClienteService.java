@@ -4,10 +4,17 @@ import com.apintermedio.incidentes.entity.Cliente;
 import com.apintermedio.incidentes.entity.Servicios;
 import com.apintermedio.incidentes.repository.IClienteRepository;
 import com.apintermedio.incidentes.repository.IServicioRepository;
+import com.apintermedio.incidentes.requestDto.ClienteDto;
+import com.apintermedio.incidentes.responseDto.ResponseClienteDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class ClienteService implements IClienteService{
 
@@ -16,10 +23,14 @@ public class ClienteService implements IClienteService{
     @Autowired
     IServicioRepository servRepo;
     @Override
-    public List<Cliente> listarClientes() {
-        List<Cliente> listaCliente = cliRepo.findAll ();
+    public List<ClienteDto> listarClientes() {
+        ModelMapper mapper = new ModelMapper ();
 
-        return listaCliente;
+        List<Cliente> listaCliente = cliRepo.findAll ();
+        List<ClienteDto> clienteDtoList = new ArrayList<> ();
+        listaCliente.stream ().forEach ( c -> clienteDtoList.add(mapper.map(c, ClienteDto.class)) );
+
+        return clienteDtoList;
     }
 
     @Override
@@ -29,10 +40,19 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
-    public void guardarCliente(Cliente cliente) {
+    public ResponseClienteDto guardarCliente(ClienteDto cliente) {
+        ModelMapper modelMapper = new ModelMapper ();
+        Cliente cli = modelMapper.map(cliente, Cliente.class);
 
-        cliRepo.save ( cliente );
+        cli.getListaServicios ().forEach ( i->i.setClientes ( Collections.singleton ( cli ) ) );
 
+
+        Cliente persistCliente = cliRepo.save ( cli);
+        ResponseClienteDto resDto = new ResponseClienteDto ();
+        resDto.setCliente (modelMapper.map(persistCliente, ClienteDto.class)  );
+        resDto.setMessage ( "Se guardo correctamente" );
+
+         return resDto;
     }
 
     @Override
