@@ -11,14 +11,13 @@ import com.apintermedio.incidentes.repository.IIncidenteRepository;
 import com.apintermedio.incidentes.repository.ITecnicoRepository;
 import com.apintermedio.incidentes.repository.ITipoProblemaRepository;
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
+import com.apintermedio.incidentes.requestDto.TecnicoDto;
 import com.apintermedio.incidentes.responseDto.ResponseIncideteDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.*;
 
 @Service
@@ -96,6 +95,45 @@ public class IncidenteService implements IIncidenteService{
     public void eliminarIncidenteporID(Long idIncidente) {
         incidenteRepo.deleteById ( idIncidente );
 
+    }
+
+    @Override
+    public TecnicoDto tecnicoMasEficiente() {
+
+        List<Incidente> listIncidente = incidenteRepo.findAll ();
+      LocalDate fechaIncidente;
+      LocalDate fechaTermina;
+      Period diferencia;
+      int menorDiferencia= 0;
+      Tecnico tecnico = null;
+      int diferenciaDias ;
+
+       for(Incidente inci:listIncidente){
+           fechaIncidente = inci.getFechaIncidente ();
+           fechaTermina = inci.getFechaHoraTerminara ().toLocalDate ();
+           diferencia = Period.between ( fechaIncidente,fechaTermina );
+           diferenciaDias = diferencia.getDays ();
+
+           menorDiferencia = diferenciaDias;
+           tecnico = inci.getTecnico ();
+
+          if(  diferenciaDias < menorDiferencia ){
+              System.out.println ("la primera vez menorDirefencia" + menorDiferencia );
+              System.out.println ("la primera vez la diferencia en dias" + diferenciaDias );
+              menorDiferencia = diferenciaDias;
+              tecnico = inci.getTecnico ();
+          }
+
+
+
+       }
+        System.out.println ("queda menor diferencia " + menorDiferencia);
+
+
+       
+        ModelMapper modelMapper = new ModelMapper ();
+       TecnicoDto tec = modelMapper.map(tecnico, TecnicoDto.class);
+        return tec;
     }
 
 }

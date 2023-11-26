@@ -33,8 +33,8 @@ public class IncidenteController {
 
         return new ResponseEntity<> ( incidenteService.guardarIncidente ( incidente ), HttpStatus.OK);
     }
-   /* @GetMapping("/tecnicoMasEficiente")
+    @GetMapping("/tecnicoMasEficiente")
     public ResponseEntity<?> traerTecnico(){
         return new ResponseEntity<> ( incidenteService.tecnicoMasEficiente(), HttpStatus.OK );
-    }*/
+    }
 }

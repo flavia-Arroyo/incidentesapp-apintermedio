@@ -50,8 +50,6 @@ public class TecnicoService implements ITecnicoService{
         resDto.setListTecnico ( Collections.singleton ( modelMapper.map ( persistTecnico, TecnicoDto.class ) ) );
         resDto.setMensaje ( "se guardo correctamente el tecnico" );
 
-
-
         return resDto;
     }
 
@@ -73,15 +71,12 @@ public class TecnicoService implements ITecnicoService{
             }
         }
 
-
         //se marca el incidente como resuelto
         inci.setEstado ( Estados.CERRADO );
 
-        ResponseTecnicoAsignado resTecnico = new ResponseTecnicoAsignado ();
-
         inciRepo.save ( inci );
 
-
+        ResponseTecnicoAsignado resTecnico = new ResponseTecnicoAsignado ();
 
         resTecnico.setConsideraciones ( "se soluciono el incidente establecido en el tiempo establecido" );
 

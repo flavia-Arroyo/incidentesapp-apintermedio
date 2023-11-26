@@ -14,7 +14,7 @@ public interface IIncidenteService {
     public Incidente buscarIncidenteporId(Long idIncidente);
     public ResponseIncideteDto guardarIncidente(IncidenteDto incidente);
     public void eliminarIncidenteporID(Long idIncidente);
-    //public TecnicoDto tecnicoMasEficiente();
+    public TecnicoDto tecnicoMasEficiente();
 
 
 
