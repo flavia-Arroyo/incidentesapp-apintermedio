@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.controller;
 
 import com.apintermedio.incidentes.entity.Tecnico;
+import com.apintermedio.incidentes.requestDto.IncidenteDto;
 import com.apintermedio.incidentes.requestDto.TecnicoDto;
 import com.apintermedio.incidentes.service.ITecnicoService;
 import org.slf4j.Logger;
@@ -14,9 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("incidentes-app")
-@CrossOrigin(value= "http://localhost:4200")
+
 public class TecnicoController {
-    private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+
     @Autowired
     ITecnicoService tecnicoServ;
     @PostMapping("/crearTecnico")
@@ -24,10 +25,12 @@ public class TecnicoController {
 
         return new ResponseEntity<> ( tecnicoServ.guardarTecnico ( tecnico ), HttpStatus.OK );
     }
-    @GetMapping("/tecnico")
-    public List<Tecnico> traerTecnicos(){
-        return tecnicoServ.listarTecnicos ();
+    @PutMapping ("/tecnicoAsignado")
+    public ResponseEntity<?> traerTecnicos(@RequestBody IncidenteDto incidenteDto){
+
+        return new ResponseEntity<> ( tecnicoServ.solucionarIncidente(incidenteDto) ,HttpStatus.OK);
     }
+
 
 
 }

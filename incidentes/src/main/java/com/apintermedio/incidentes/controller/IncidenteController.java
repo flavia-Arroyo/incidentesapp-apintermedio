@@ -22,8 +22,9 @@ public class IncidenteController {
     IncidenteService incidenteService;
 
     @GetMapping("/incidentes")
-    public List<Incidente> traerIncidente(){
-        return incidenteService.listarIncidentes ();
+    public ResponseEntity<?> traerIncidente(){
+
+        return new ResponseEntity<> (incidenteService.listarIncidentes (), HttpStatus.OK  ) ;
     }
 
     @PostMapping("/incidente")
@@ -32,4 +33,8 @@ public class IncidenteController {
 
         return new ResponseEntity<> ( incidenteService.guardarIncidente ( incidente ), HttpStatus.OK);
     }
+   /* @GetMapping("/tecnicoMasEficiente")
+    public ResponseEntity<?> traerTecnico(){
+        return new ResponseEntity<> ( incidenteService.tecnicoMasEficiente(), HttpStatus.OK );
+    }*/
 }

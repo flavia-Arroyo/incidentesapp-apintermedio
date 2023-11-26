@@ -31,8 +31,13 @@ public class IncidenteService implements IIncidenteService{
     TecnicoService tecnoServ;
 
     @Override
-    public List<Incidente> listarIncidentes() {
-        return incidenteRepo.findAll ();
+    public List<IncidenteDto> listarIncidentes() {
+        ModelMapper mapper = new ModelMapper ();
+        List<Incidente>incidenteEnt = incidenteRepo.findAll ();
+        List<IncidenteDto> inciDto = new ArrayList<> ();
+        incidenteEnt.stream ().forEach ( i -> inciDto.add(mapper.map(i, IncidenteDto.class)) );
+
+        return inciDto;
     }
 
     @Override
@@ -81,7 +86,8 @@ public class IncidenteService implements IIncidenteService{
         ResponseIncideteDto resDto = new ResponseIncideteDto ();
         resDto.setListIncidente ( Collections.singleton ( modelMapper.map ( persistInci,
                 IncidenteDto.class )));
-        resDto.setMensaje ( "el incidente se creo correctamente " + "estará resuelto el dia : " + inci.getFechaHoraTerminara () );
+        resDto.setMensaje ( "el incidente se creo correctamente " + "estará resuelto el dia : " + inci.getFechaHoraTerminara () +
+                "el tecnico " + inci.getTecnico ().getNombreCompleto () + "   tiene un nuevo incidente a resolver");
 
         return resDto;
     }
