@@ -37,4 +37,8 @@ public class IncidenteController {
     public ResponseEntity<?> traerTecnico(){
         return new ResponseEntity<> ( incidenteService.tecnicoMasEficiente(), HttpStatus.OK );
     }
+    @GetMapping("/tecnicoMasIncidentesResueltos/{dias}")
+    public ResponseEntity<?> traerTecnico(@PathVariable Integer dias){
+        return new ResponseEntity<> ( incidenteService.tecnicoMasIncidentes(dias), HttpStatus.OK );
+    }
 }

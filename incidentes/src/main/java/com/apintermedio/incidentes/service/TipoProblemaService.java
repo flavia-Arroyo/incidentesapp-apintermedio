@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,8 +21,19 @@ public class TipoProblemaService implements ITipoProblemaService{
     @Autowired
     IEspecialidadTecRepository espeRepo;
     @Override
-    public List<TipoProblema> listarProblema() {
-        return problemaRepo.findAll ();
+    public List<TipoProblemaDto> listarProblema() {
+        List<TipoProblema>  probPersis = problemaRepo.findAll ();
+        ModelMapper modelMapper = new ModelMapper ();
+        /*
+          ModelMapper modelMapper = new ModelMapper ();
+        List<EspecialidadTecnico> espePersist = espeRepo.findAll ();
+        List<EspecialidadDto> espeDto = new ArrayList<> ();
+
+        espePersist.stream ().forEach ( e -> espeDto.add(modelMapper.map(e, EspecialidadDto.class)));
+         */
+        List<TipoProblemaDto> probDto = new ArrayList<> ();
+        probPersis.stream ().forEach ( p -> probDto.add(modelMapper.map(p, TipoProblemaDto.class)));
+        return probDto;
     }
 
     @Override

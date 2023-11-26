@@ -30,8 +30,15 @@ public class TecnicoService implements ITecnicoService{
     @Autowired
     IIncidenteRepository inciRepo;
     @Override
-    public List<Tecnico> listarTecnicos() {
-        return tecnicoRepo.findAll ();
+    public List<TecnicoDto> listarTecnicos() {
+
+        List<Tecnico> tecnicoPersis =  tecnicoRepo.findAll ();
+        List<TecnicoDto>listTecnicoDto = new ArrayList<> ();
+        ModelMapper modelMapper = new ModelMapper ();
+
+        tecnicoPersis.stream ().forEach ( t -> listTecnicoDto.add(modelMapper.map(t, TecnicoDto.class)));
+        return listTecnicoDto;
+
     }
 
     @Override

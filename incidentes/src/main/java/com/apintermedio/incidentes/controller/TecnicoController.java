@@ -30,6 +30,11 @@ public class TecnicoController {
 
         return new ResponseEntity<> ( tecnicoServ.solucionarIncidente(incidenteDto) ,HttpStatus.OK);
     }
+    @GetMapping("/tecnicos")
+    public ResponseEntity<?> traerTecnicos(){
+        return new ResponseEntity<> ( tecnicoServ.listarTecnicos (), HttpStatus.OK );
+    }
+
 
 
 

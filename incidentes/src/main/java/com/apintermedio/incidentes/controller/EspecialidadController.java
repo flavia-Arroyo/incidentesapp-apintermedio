@@ -3,6 +3,7 @@ package com.apintermedio.incidentes.controller;
 import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.requestDto.EspecialidadDto;
 import com.apintermedio.incidentes.service.EspecialidadService;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ public class EspecialidadController {
     EspecialidadService espeService;
 
     @GetMapping("/especialidad")
-    public List<EspecialidadTecnico> traerEspecialidad(){
+    public ResponseEntity<?> traerEspecialidad(){
 
-        return espeService.listarEspecialidad ();
+
+        return new ResponseEntity<> (  espeService.listarEspecialidad (), HttpStatus.OK);
     }
     @PostMapping("/especialidad")
     public ResponseEntity<?> crearEspecialidad(@RequestBody EspecialidadDto espe){

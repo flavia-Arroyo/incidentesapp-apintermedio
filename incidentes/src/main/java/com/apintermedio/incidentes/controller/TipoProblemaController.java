@@ -25,10 +25,9 @@ public class TipoProblemaController {
         return new ResponseEntity<> (problemaService.guardarProblema ( problema ), HttpStatus.OK );
     }
     @GetMapping("/problemas")
-    public List<TipoProblema>  traerProblemas(){
-       List<TipoProblema> listProblema =  problemaService.listarProblema ();
-        //listProblema.forEach ( problema-> logger.info(problema.toString ()) );
-        return listProblema;
+    public ResponseEntity<?> traerProblemas(){
+
+        return new ResponseEntity<> (  problemaService.listarProblema (), HttpStatus.OK);
     }
 
 

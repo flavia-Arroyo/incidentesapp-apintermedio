@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IEspecialidadService {
 
-    public List<EspecialidadTecnico> listarEspecialidad();
+    public List<EspecialidadDto> listarEspecialidad();
     public EspecialidadTecnico buscarEspecialidadporId(Long idEspecialidad);
     public ResponseEspeDto guardarEspecialidad(EspecialidadDto especialidad);
     public void eliminarEspecialidadporID(Long idEspecialidad);

@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface ITecnicoService {
-    public List<Tecnico> listarTecnicos();
+    public List<TecnicoDto> listarTecnicos();
     public Tecnico buscarTecnicoporId(Long idTecnico);
     public ResponseTecnicoDto guardarTecnico(TecnicoDto tecnico);
     public void eliminarTecnicoporID(Long idTecnico);

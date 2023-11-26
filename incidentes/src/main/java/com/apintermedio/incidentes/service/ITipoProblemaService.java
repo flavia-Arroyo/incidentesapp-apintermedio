@@ -8,7 +8,7 @@ import com.apintermedio.incidentes.responseDto.ResponseProblemaDto;
 import java.util.List;
 
 public interface ITipoProblemaService {
-    public List<TipoProblema> listarProblema();
+    public List<TipoProblemaDto> listarProblema();
     public TipoProblema buscarProblemaporId(Long idProblema);
     public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema);
     public void eliminarProblemaporID(Long idProblema);

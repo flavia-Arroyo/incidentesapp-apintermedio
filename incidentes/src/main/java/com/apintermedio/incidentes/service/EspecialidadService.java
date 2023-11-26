@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,8 +20,13 @@ public class EspecialidadService implements IEspecialidadService{
     @Autowired
     IEspecialidadTecRepository espeRepo;
     @Override
-    public List<EspecialidadTecnico> listarEspecialidad() {
-        return espeRepo.findAll ();
+    public List<EspecialidadDto> listarEspecialidad() {
+        ModelMapper modelMapper = new ModelMapper ();
+        List<EspecialidadTecnico> espePersist = espeRepo.findAll ();
+        List<EspecialidadDto> espeDto = new ArrayList<> ();
+
+        espePersist.stream ().forEach ( e -> espeDto.add(modelMapper.map(e, EspecialidadDto.class)));
+        return  espeDto;
     }
 
     @Override
