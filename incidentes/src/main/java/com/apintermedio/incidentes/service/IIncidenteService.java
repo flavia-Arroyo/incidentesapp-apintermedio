@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.service;
 
 
+import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Incidente;
 import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
@@ -18,6 +19,5 @@ public interface IIncidenteService {
     public TecnicoDto tecnicoMasIncidentes(Integer dias);
 
 
-
-
+    public TecnicoDto tecnicoPorDiaPorEspe(Integer dias, String especialidad);
 }

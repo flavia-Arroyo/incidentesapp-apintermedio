@@ -1,5 +1,6 @@
 package com.apintermedio.incidentes.controller;
 
+import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Incidente;
 import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
@@ -41,4 +42,10 @@ public class IncidenteController {
     public ResponseEntity<?> traerTecnico(@PathVariable Integer dias){
         return new ResponseEntity<> ( incidenteService.tecnicoMasIncidentes(dias), HttpStatus.OK );
     }
+    @GetMapping("/tecnicoMasResolucionesPorEspecialidad/{dias}/{especialidad}")
+    public ResponseEntity<?> traerTecnicoEspe(@PathVariable Integer dias,
+                                              @PathVariable String especialidad){
+        return new ResponseEntity<> ( incidenteService.tecnicoPorDiaPorEspe(dias, especialidad), HttpStatus.OK );
+    }
+
 }
