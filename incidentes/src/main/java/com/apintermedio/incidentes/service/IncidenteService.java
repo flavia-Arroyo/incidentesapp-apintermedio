@@ -104,30 +104,32 @@ public class IncidenteService implements IIncidenteService{
       LocalDate fechaIncidente;
       LocalDate fechaTermina;
       Period diferencia;
+
       int menorDiferencia= 0;
       Tecnico tecnico = null;
       int diferenciaDias ;
+
+      //obtengo la primera diferencia de dias
+       Incidente inciPrimero =  listIncidente.get ( 0 );
+       fechaIncidente = inciPrimero.getFechaIncidente ();
+       fechaTermina = inciPrimero.getFechaHoraTerminara ( ).toLocalDate ();
+       diferencia = Period.between ( fechaIncidente, fechaTermina );
+       diferenciaDias = diferencia.getDays ();
+       menorDiferencia = diferenciaDias;
+       tecnico  = inciPrimero.getTecnico ();
 
        for(Incidente inci:listIncidente){
            fechaIncidente = inci.getFechaIncidente ();
            fechaTermina = inci.getFechaHoraTerminara ().toLocalDate ();
            diferencia = Period.between ( fechaIncidente,fechaTermina );
            diferenciaDias = diferencia.getDays ();
-
-           menorDiferencia = diferenciaDias;
-           tecnico = inci.getTecnico ();
-
-          if(  diferenciaDias < menorDiferencia ){
-              System.out.println ("la primera vez menorDirefencia" + menorDiferencia );
-              System.out.println ("la primera vez la diferencia en dias" + diferenciaDias );
-              menorDiferencia = diferenciaDias;
-              tecnico = inci.getTecnico ();
-          }
-
-
+           if(diferenciaDias < menorDiferencia) {
+               menorDiferencia = diferenciaDias;
+               tecnico = inci.getTecnico ( );
+           }
 
        }
-        System.out.println ("queda menor diferencia " + menorDiferencia);
+
 
 
        

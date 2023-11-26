@@ -23,5 +23,5 @@ public class IncidenteDto {
     private LocalDateTime fechaHoraTerminara;
     private ClienteDto cliente;
     private TecnicoDto tecnico;
-     private Set<TipoProblemaDto> tipoProblema;
+    private Set<TipoProblemaDto> tipoProblema;
 }
