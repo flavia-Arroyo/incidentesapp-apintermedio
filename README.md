@@ -49,6 +49,7 @@ Es necesario que el proyecto Java sea creado como un proyecto “Maven” para p
 
 **<h2 align="center" >Diagrama UML</h2>**
 <p  align="center"> Se omiten los metodos getter y setter como constructores ya que se utiliza lombok </p>
+**
 <img src= "./umlincidente.png"      >
 
 
