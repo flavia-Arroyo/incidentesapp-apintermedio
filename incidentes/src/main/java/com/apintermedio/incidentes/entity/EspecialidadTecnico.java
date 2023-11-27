@@ -32,7 +32,5 @@ public class EspecialidadTecnico {
     public EspecialidadTecnico(String nombreEspecialidad) {
         this.nombreEspecialidad = nombreEspecialidad;
     }
-    public void asignarTecnico(Tecnico tecnico){
-        this.listaTecnicos.add(tecnico);
-    }
+
 }

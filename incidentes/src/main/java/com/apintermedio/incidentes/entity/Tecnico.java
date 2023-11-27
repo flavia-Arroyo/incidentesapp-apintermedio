@@ -34,18 +34,6 @@ public class Tecnico {
         this.email = email;
     }
 
-    public Set<Incidente> asignarIncidente(Incidente incidente) {
-        this.listIncidente.add(incidente);
 
-        return listIncidente;
-    }
-
-
-
-    public void asignarEpecialidad(EspecialidadTecnico espe){
-        this.listaEspecialidades.add(espe);
-
-
-    }
 
 }

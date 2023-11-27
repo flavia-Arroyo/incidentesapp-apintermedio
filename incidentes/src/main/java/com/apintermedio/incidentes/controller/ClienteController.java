@@ -14,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("incidentes-app")
-//@CrossOrigin(value= "http://localhost:4200")
+
 public class ClienteController {
-    //private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+
 
     @Autowired
     private ClienteService cliServ;

@@ -9,10 +9,8 @@ import java.util.List;
 
 public interface ITipoProblemaService {
     public List<TipoProblemaDto> listarProblema();
-    public TipoProblema buscarProblemaporId(Long idProblema);
-    public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema);
-    public void eliminarProblemaporID(Long idProblema);
 
-    public String eliminarEspecialidad(Long idProblema, Long idEspe);
+    public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema);
+
 
 }

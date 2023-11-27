@@ -15,11 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("incidentes-app")
-@CrossOrigin(value= "http://localhost:4200")
+
 public class TipoProblemaController {
     @Autowired
     TipoProblemaService problemaService;
-    //private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+
     @PostMapping("/problemas")
     public ResponseEntity<?> crearProblema (@RequestBody TipoProblemaDto problema){
         return new ResponseEntity<> (problemaService.guardarProblema ( problema ), HttpStatus.OK );
@@ -33,12 +33,7 @@ public class TipoProblemaController {
 
 
 
-    @DeleteMapping("/eliminarEspe/{idProblema}/{idEspe}")
-    public String eliminarEspecialidad(@PathVariable long idProblema,
-                                       @PathVariable long idEspe){
-        return problemaService.eliminarEspecialidad ( idProblema, idEspe);
 
-    }
 
 
 

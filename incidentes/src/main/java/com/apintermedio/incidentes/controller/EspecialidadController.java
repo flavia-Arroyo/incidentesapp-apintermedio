@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("incidentes-app")
 
 public class EspecialidadController {
-    private static final Logger logger = LoggerFactory.getLogger ( ClienteController.class );
+
 
     @Autowired
     EspecialidadService espeService;

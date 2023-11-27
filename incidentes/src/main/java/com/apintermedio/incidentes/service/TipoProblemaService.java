@@ -18,28 +18,18 @@ import java.util.List;
 public class TipoProblemaService implements ITipoProblemaService{
     @Autowired
     ITipoProblemaRepository problemaRepo;
-    @Autowired
-    IEspecialidadTecRepository espeRepo;
+
     @Override
     public List<TipoProblemaDto> listarProblema() {
         List<TipoProblema>  probPersis = problemaRepo.findAll ();
         ModelMapper modelMapper = new ModelMapper ();
-        /*
-          ModelMapper modelMapper = new ModelMapper ();
-        List<EspecialidadTecnico> espePersist = espeRepo.findAll ();
-        List<EspecialidadDto> espeDto = new ArrayList<> ();
 
-        espePersist.stream ().forEach ( e -> espeDto.add(modelMapper.map(e, EspecialidadDto.class)));
-         */
         List<TipoProblemaDto> probDto = new ArrayList<> ();
         probPersis.stream ().forEach ( p -> probDto.add(modelMapper.map(p, TipoProblemaDto.class)));
         return probDto;
     }
 
-    @Override
-    public TipoProblema buscarProblemaporId(Long idProblema) {
-        return problemaRepo.findById ( idProblema ).orElse ( null );
-    }
+
 
     @Override
     public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema) {
@@ -60,23 +50,11 @@ public class TipoProblemaService implements ITipoProblemaService{
 
     }
 
-    @Override
-    public void eliminarProblemaporID(Long idProblema) {
-        problemaRepo.deleteById ( idProblema );
-
-    }
 
 
 
-    @Override
-    public String eliminarEspecialidad(Long idProblema, Long idEspe) {
-        TipoProblema prob = problemaRepo.findById ( idProblema ).orElse ( null );
-        EspecialidadTecnico espe = espeRepo.findById ( idEspe ).orElse ( null );
-        prob.borrarEspecialidad ( espe );
 
-        problemaRepo.save ( prob );
-        return "se elimino la especialidad correctamente";
-    }
+
 
 
 }
