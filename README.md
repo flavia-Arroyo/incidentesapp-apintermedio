@@ -48,7 +48,7 @@ Es necesario que el proyecto Java sea creado como un proyecto “Maven” para p
 <img src="./DER-INCIDENTE-AP.png">
 
 **<h2 align="center" >Diagrama UML</h2>**
-<img src= "./umlIncidente.png"      >
+<img src= "./umlincidente.png"      >
 
 
 
