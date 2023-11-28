@@ -12,5 +12,4 @@ import java.util.Set;
 public interface ITecnicoRepository extends JpaRepository<Tecnico,Long> {
 
 
-
 }

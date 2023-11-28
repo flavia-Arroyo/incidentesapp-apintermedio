@@ -29,7 +29,10 @@ public class TipoProblemaService implements ITipoProblemaService{
         return probDto;
     }
 
-
+    @Override
+    public TipoProblema buscarProblemaporId(Long idProblema) {
+        return problemaRepo.findById ( idProblema ).orElse ( null );
+    }
 
     @Override
     public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema) {

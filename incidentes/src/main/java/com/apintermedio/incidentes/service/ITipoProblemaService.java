@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ITipoProblemaService {
     public List<TipoProblemaDto> listarProblema();
-
+    public TipoProblema buscarProblemaporId(Long idProblema);
     public ResponseProblemaDto guardarProblema(TipoProblemaDto tipoProblema);
 
 

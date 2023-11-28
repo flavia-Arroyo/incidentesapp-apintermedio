@@ -37,9 +37,6 @@ public class TipoProblema {
 
 
 
-    public void borrarEspecialidad (EspecialidadTecnico espe){
-        this.listaEspecialidades.remove ( espe );
-    }
 
 
     public void asignarHoraMaxima(TipoProblema problema){

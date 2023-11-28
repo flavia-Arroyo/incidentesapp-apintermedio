@@ -1,14 +1,13 @@
 package com.apintermedio.incidentes.service;
 
-import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Incidente;
 import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.entity.TipoProblema;
 import com.apintermedio.incidentes.enumerados.Complegidad;
 import com.apintermedio.incidentes.enumerados.Estados;
-import com.apintermedio.incidentes.repository.IEspecialidadTecRepository;
 import com.apintermedio.incidentes.repository.IIncidenteRepository;
 import com.apintermedio.incidentes.repository.ITecnicoRepository;
+import com.apintermedio.incidentes.repository.ITipoProblemaRepository;
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
 import com.apintermedio.incidentes.requestDto.TecnicoDto;
 import com.apintermedio.incidentes.responseDto.ResponseTecnicoAsignado;
@@ -17,11 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class TecnicoService implements ITecnicoService{
@@ -29,6 +24,12 @@ public class TecnicoService implements ITecnicoService{
     ITecnicoRepository tecnicoRepo;
     @Autowired
     IIncidenteRepository inciRepo;
+
+
+    private static void accept(TipoProblema t) {
+        t.getListaEspecialidades ( ).toArray ( );
+    }
+
     @Override
     public List<TecnicoDto> listarTecnicos() {
 
@@ -60,11 +61,7 @@ public class TecnicoService implements ITecnicoService{
         return resDto;
     }
 
-    @Override
-    public void eliminarTecnicoporID(Long idTecnico) {
-        tecnicoRepo.deleteById ( idTecnico );
 
-    }
 
     @Override
     public ResponseTecnicoAsignado solucionarIncidente(IncidenteDto incidenteDto) {
@@ -89,6 +86,8 @@ public class TecnicoService implements ITecnicoService{
 
         return resTecnico;
     }
+
+
 
 
 }

@@ -6,14 +6,12 @@ import com.apintermedio.incidentes.repository.IClienteRepository;
 import com.apintermedio.incidentes.repository.IServicioRepository;
 import com.apintermedio.incidentes.requestDto.ClienteDto;
 import com.apintermedio.incidentes.responseDto.ResponseClienteDto;
+import com.apintermedio.incidentes.responseDto.ResponseMensajeDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ClienteService implements IClienteService{
@@ -58,6 +56,14 @@ public class ClienteService implements IClienteService{
     @Override
     public void eliminarClienteporID(Long idCliente) {
         cliRepo.deleteById ( idCliente );
+
+    }
+
+    @Override
+    public ResponseMensajeDto borrarCliente(Long idCliente) {
+        Optional<Cliente> cliente = cliRepo.findById(idCliente);
+        cliente.ifPresent(value -> cliRepo.delete(value));
+        return new ResponseMensajeDto ("Cliente eliminado con éxito");
 
     }
 

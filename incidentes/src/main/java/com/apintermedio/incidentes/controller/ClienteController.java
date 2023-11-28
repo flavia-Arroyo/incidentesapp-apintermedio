@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.RelationSupportMBean;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,12 @@ public class ClienteController {
 
         return new ResponseEntity<> ( cliServ.guardarCliente ( cli ), HttpStatus.OK );
     }
+    @DeleteMapping("/borrarCliente/{idCliente}")
+    public ResponseEntity<?> borrarCliente(@PathVariable Long idCliente){
+        return new ResponseEntity<> ( cliServ.borrarCliente(idCliente), HttpStatus.OK );
+
+    }
+
 
 
 
