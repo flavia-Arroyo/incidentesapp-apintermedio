@@ -111,7 +111,7 @@ public class TecnicoService implements ITecnicoService{
         System.out.println ( "lista especialidades" + idEspe );
         for (Tecnico tecnico : tecnicoPersis) {
             if (tecnico.getListaEspecialidades ( ).containsAll ( idEspe )) {
-                System.out.println (tecnico.getNombreCompleto () );
+                System.out.println   (tecnico.getNombreCompleto () );
 
 
 
