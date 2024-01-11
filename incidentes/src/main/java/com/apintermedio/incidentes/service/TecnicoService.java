@@ -1,5 +1,6 @@
 package com.apintermedio.incidentes.service;
 
+import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Incidente;
 import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.entity.TipoProblema;
@@ -8,10 +9,10 @@ import com.apintermedio.incidentes.enumerados.Estados;
 import com.apintermedio.incidentes.repository.IIncidenteRepository;
 import com.apintermedio.incidentes.repository.ITecnicoRepository;
 import com.apintermedio.incidentes.repository.ITipoProblemaRepository;
-import com.apintermedio.incidentes.requestDto.IncidenteDto;
-import com.apintermedio.incidentes.requestDto.TecnicoDto;
+import com.apintermedio.incidentes.requestDto.*;
 import com.apintermedio.incidentes.responseDto.ResponseTecnicoAsignado;
 import com.apintermedio.incidentes.responseDto.ResponseTecnicoDto;
+import com.apintermedio.incidentes.responseDto.TecnicoPorProblemas;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,7 +88,41 @@ public class TecnicoService implements ITecnicoService{
         return resTecnico;
     }
 
+    @Override
+    public Set<TecnicoPorProblemas> buscarTecnicos(ProblemasDto problemas) {
+        //List<EspecialidadDto> listaEspecialidades = null;
+        Set<TecnicoPorProblemas> tecnicosProb = new HashSet<> ( );
+        ModelMapper mapper = new ModelMapper ( );
 
+        Set<Long> idEspe = new HashSet<> ( );
+
+        TecnicoPorProblemas tecProb = new TecnicoPorProblemas ( );
+
+        List<Tecnico> tecnicoPersis = tecnicoRepo.findAll ( );
+
+        for (TipoProblemaDto p : problemas.getListProblemas ( )) {
+            for (EspecialidadDto e : p.getListaEspecialidades ( )) {
+
+                idEspe.add ( e.getEspecialidadId ( ) );
+            }
+        }
+        Tecnico tec = new Tecnico ( );
+
+        System.out.println ( "lista especialidades" + idEspe );
+        for (Tecnico tecnico : tecnicoPersis) {
+            if (tecnico.getListaEspecialidades ( ).containsAll ( idEspe )) {
+                System.out.println (tecnico.getNombreCompleto () );
+
+
+
+            }
+        }
+
+
+        System.out.println ( "lista" + tecnicosProb );
+        return tecnicosProb;
+
+    }
 
 
 }

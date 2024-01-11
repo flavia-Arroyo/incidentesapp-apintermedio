@@ -14,10 +14,12 @@ import java.util.Set;
 @Getter
 @Setter
 public class IncidenteDto {
-    private Long incidenteId;
+
     private String descripcionProblema;
+
     private LocalDate fechaIncidente;
     private Estados estado;
+
     private LocalTime horaIncidente;
     private LocalTime horaEstimadaTecnico;
     private LocalDateTime fechaHoraTerminara;

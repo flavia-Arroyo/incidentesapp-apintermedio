@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long clienteId;
+
     private String razonSocial;
     private Long cuit;
     private String domicilio;
@@ -33,8 +35,13 @@ public class Cliente {
     private Set<Incidente>listIncidentes;
 
 
-
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass ( ) != o.getClass ( )) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals ( razonSocial, cliente.razonSocial ) && Objects.equals ( cuit, cliente.cuit ) && Objects.equals ( domicilio, cliente.domicilio ) && Objects.equals ( email, cliente.email ) && Objects.equals ( listaServicios, cliente.listaServicios ) && Objects.equals ( listIncidentes, cliente.listIncidentes );
+    }
 
 
 }

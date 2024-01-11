@@ -1,6 +1,7 @@
 package com.apintermedio.incidentes.controller;
 
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
+import com.apintermedio.incidentes.requestDto.ProblemasDto;
 import com.apintermedio.incidentes.requestDto.TecnicoDto;
 import com.apintermedio.incidentes.service.ITecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class TecnicoController {
 
         return new ResponseEntity<> ( tecnicoServ.solucionarIncidente(incidenteDto) ,HttpStatus.OK);
     }
+
+    @GetMapping("/tecnicoDisponibles")
+    public ResponseEntity<?> traerTecnicosPorProblema(@RequestBody ProblemasDto problemas){
+        System.out.println ("lo requerido " + problemas );
+        return new ResponseEntity<> ( tecnicoServ.buscarTecnicos ( problemas ), HttpStatus.OK );
+    }
+
+
     @GetMapping("/tecnicos")
     public ResponseEntity<?> traerTecnicos(){
         return new ResponseEntity<> ( tecnicoServ.listarTecnicos (), HttpStatus.OK );

@@ -1,13 +1,12 @@
 package com.apintermedio.incidentes.requestDto;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
-
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class EspecialidadDto {
     private Long especialidadId;
     private String nombreEspecialidad;

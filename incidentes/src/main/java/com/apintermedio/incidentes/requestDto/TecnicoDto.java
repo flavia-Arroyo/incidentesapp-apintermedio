@@ -2,13 +2,13 @@ package com.apintermedio.incidentes.requestDto;
 
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class TecnicoDto {
     private Long tecnicoId;
     private String nombreCompleto;

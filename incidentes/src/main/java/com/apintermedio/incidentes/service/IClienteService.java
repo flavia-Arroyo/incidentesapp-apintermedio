@@ -11,7 +11,7 @@ import java.util.List;
 public interface IClienteService {
 
     public List<ClienteDto> listarClientes();
-    public Cliente buscarClienteporId(Long idCliente);
+    public ClienteDto buscarClienteporId(Long idCliente);
     public ResponseClienteDto guardarCliente(ClienteDto cliente);
     public void eliminarClienteporID(Long idCliente);
     public ResponseMensajeDto borrarCliente(Long idCliente);

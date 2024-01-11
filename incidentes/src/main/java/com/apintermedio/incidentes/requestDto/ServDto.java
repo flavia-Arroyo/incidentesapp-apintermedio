@@ -1,10 +1,10 @@
 package com.apintermedio.incidentes.requestDto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class ServDto {
     private Long servicioId;
     private String nombreServicio;

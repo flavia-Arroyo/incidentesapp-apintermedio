@@ -1,8 +1,10 @@
 package com.apintermedio.incidentes.controller;
 
 import com.apintermedio.incidentes.entity.Cliente;
+import com.apintermedio.incidentes.exception.ClienteNotFoundException;
 import com.apintermedio.incidentes.requestDto.ClienteDto;
 import com.apintermedio.incidentes.service.ClienteService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,12 @@ public class ClienteController {
 
         return new ResponseEntity<> ( cliServ.listarClientes (), HttpStatus.OK );
     }
+    @GetMapping("/cliente/{idCliente}")
+    public ResponseEntity<?> traerUnCliente(@PathVariable Long idCliente){
+        return new ResponseEntity<> ( cliServ.buscarClienteporId ( idCliente ), HttpStatus.OK );
+    }
     @PostMapping("/crearCliente")
-    public ResponseEntity<?> crearCliente(@RequestBody ClienteDto cli){
+    public ResponseEntity<?> crearCliente(@RequestBody @Valid ClienteDto cli){
 
         return new ResponseEntity<> ( cliServ.guardarCliente ( cli ), HttpStatus.OK );
     }
@@ -39,6 +45,7 @@ public class ClienteController {
         return new ResponseEntity<> ( cliServ.borrarCliente(idCliente), HttpStatus.OK );
 
     }
+
 
 
 

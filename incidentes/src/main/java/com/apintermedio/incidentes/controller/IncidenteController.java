@@ -4,6 +4,7 @@ import com.apintermedio.incidentes.entity.EspecialidadTecnico;
 import com.apintermedio.incidentes.entity.Incidente;
 import com.apintermedio.incidentes.entity.Tecnico;
 import com.apintermedio.incidentes.requestDto.IncidenteDto;
+import com.apintermedio.incidentes.service.IIncidenteService;
 import com.apintermedio.incidentes.service.IncidenteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,14 @@ import java.util.List;
 
 public class IncidenteController {
 
-    @Autowired
-    IncidenteService incidenteService;
+   // @Autowired
+    //IncidenteService incidenteService;
+    //con el constructor
+    private IIncidenteService incidenteService;
+
+    public IncidenteController(IncidenteService incidenteService) {
+        this.incidenteService = incidenteService;
+    }
 
     @GetMapping("/incidentes")
     public ResponseEntity<?> traerIncidente(){
