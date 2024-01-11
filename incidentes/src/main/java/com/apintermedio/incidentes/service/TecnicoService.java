@@ -94,7 +94,7 @@ public class TecnicoService implements ITecnicoService{
         Set<TecnicoPorProblemas> tecnicosProb = new HashSet<> ( );
         ModelMapper mapper = new ModelMapper ( );
 
-        Set<Long> idEspe = new HashSet<> ( );
+        List<EspecialidadDto> idEspe = new ArrayList<> (  );
 
         TecnicoPorProblemas tecProb = new TecnicoPorProblemas ( );
 
@@ -103,19 +103,19 @@ public class TecnicoService implements ITecnicoService{
         for (TipoProblemaDto p : problemas.getListProblemas ( )) {
             for (EspecialidadDto e : p.getListaEspecialidades ( )) {
 
-                idEspe.add ( e.getEspecialidadId ( ) );
+                idEspe.add ( e);
             }
         }
         Tecnico tec = new Tecnico ( );
 
-        System.out.println ( "lista especialidades" + idEspe );
+        System.out.println ( "lista especialidades  " + idEspe );
         for (Tecnico tecnico : tecnicoPersis) {
-            if (tecnico.getListaEspecialidades ( ).containsAll ( idEspe )) {
-                System.out.println   (tecnico.getNombreCompleto () );
+            System.out.println (tecnico.getTecnicoId () );
+            System.out.println (tecnico.getListaEspecialidades ());
 
-
-
-            }
+            if(tecnico.getListaEspecialidades ().contains ( idEspe )){
+                System.out.println ("id tecnico" + tecnico.getTecnicoId () );
+            } ;
         }
 
 
