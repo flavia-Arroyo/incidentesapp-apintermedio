@@ -90,20 +90,20 @@ public class TecnicoService implements ITecnicoService{
 
     @Override
     public Set<TecnicoPorProblemas> buscarTecnicos(ProblemasDto problemas) {
-        //List<EspecialidadDto> listaEspecialidades = null;
+        //obtener los tecnicos por problemas
         Set<TecnicoPorProblemas> tecnicosProb = new HashSet<> ( );
         ModelMapper mapper = new ModelMapper ( );
+        //lista de id de especialidades de los problemas
+        Set<Long> idEspe = new HashSet<> (  );
 
-        List<EspecialidadDto> idEspe = new ArrayList<> (  );
-
-        TecnicoPorProblemas tecProb = new TecnicoPorProblemas ( );
-
+       // TecnicoPorProblemas tecProb = new TecnicoPorProblemas ( );
+        //obtiene los tecnicos de la base de datos
         List<Tecnico> tecnicoPersis = tecnicoRepo.findAll ( );
-
+        //se recorre los problemas y se obtienen los id
         for (TipoProblemaDto p : problemas.getListProblemas ( )) {
             for (EspecialidadDto e : p.getListaEspecialidades ( )) {
 
-                idEspe.add ( e);
+                idEspe.add ( e.getEspecialidadId ());
             }
         }
         Tecnico tec = new Tecnico ( );
@@ -112,10 +112,12 @@ public class TecnicoService implements ITecnicoService{
         for (Tecnico tecnico : tecnicoPersis) {
             System.out.println (tecnico.getTecnicoId () );
             System.out.println (tecnico.getListaEspecialidades ());
+            for(EspecialidadTecnico espetec: tecnico.getListaEspecialidades ( )){
+               if( idEspe.equals ( espetec.getEspecialidadId () )){
+                    System.out.println (tecnico.getTecnicoId () );
+                }
+            }
 
-            if(tecnico.getListaEspecialidades ().contains ( idEspe )){
-                System.out.println ("id tecnico" + tecnico.getTecnicoId () );
-            } ;
         }
 
 
