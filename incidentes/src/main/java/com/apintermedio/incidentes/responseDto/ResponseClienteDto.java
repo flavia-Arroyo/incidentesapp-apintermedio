@@ -1,11 +1,11 @@
 package com.apintermedio.incidentes.responseDto;
 
 import com.apintermedio.incidentes.requestDto.ClienteDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class ResponseClienteDto {
     private ClienteDto cliente;
 

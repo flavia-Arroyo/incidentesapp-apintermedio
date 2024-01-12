@@ -6,8 +6,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 //@ToString
 public class NotificacionDto {
 

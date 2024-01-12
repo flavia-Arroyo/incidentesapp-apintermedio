@@ -22,7 +22,7 @@ public class Cliente {
     private Long clienteId;
 
     private String razonSocial;
-    private Long cuit;
+    private String cuit;
     private String domicilio;
     private String email;
     @ManyToMany
